@@ -4,21 +4,40 @@ Binary search implementation - Iterative Implementation
 ProjectFullStack
 """
 
-
 def binary_search(sorted_list, search_key):
+    """
+    Binary search iterative implementation
+    :param sorted_list: A sorted list of integers to search
+    :type sorted_list: list of ints
+    :param search_key: the integer value to search for
+    :type search_key: int
+    :return: if search_key is found, the index in the list it exists at,
+        else -1
+    :rtype: int
+    """
     left_limit = 0
     right_limit = len(sorted_list) - 1
     middle_index = 0
 
     while left_limit <= right_limit:
+        # find the middle_index
         middle_index = (left_limit + right_limit) // 2
 
         if sorted_list[middle_index] < search_key:
-            left_limit= middle_index + 1
+            # If the value of the middle index is less than what we are
+            # searching for, move the left_limit variable to be
+            # middle index + 1
+            left_limit = middle_index + 1
         elif sorted_list[middle_index] > search_key:
+            # If the value of the middle index is greater than what we are
+            # searching for, move the right_limit variable to be
+            # middle index - 1
             right_limit = middle_index - 1
         else:
+            # the value must match, return the middle index
             return middle_index
+
+    # If we get here, the element was not in the list, return -1
     return -1
 
 
